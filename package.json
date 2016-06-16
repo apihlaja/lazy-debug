@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/apihlaja/lazy-debug"
+    "url": "https://github.com/apihlaja/lazy-debug.git"
   },
   "keywords": [
     "debug"
