@@ -1,0 +1,26 @@
+{
+  "name": "lazy-debug",
+  "version": "0.0.1",
+  "description": "Generates app & module names for vision media's debug",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/apihlaja/lazy-debug"
+  },
+  "keywords": [
+    "debug"
+  ],
+  "author": "Antti Pihlaja",
+  "license": "MIT",
+  "peerDependencies": {
+    "debug": "*"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}
