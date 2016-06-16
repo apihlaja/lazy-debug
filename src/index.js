@@ -13,7 +13,7 @@ var api = module.exports = {
     }
   },
   get( filename, submoduleName ) {
-    return debug(api.getModuleDebugName(filename, process.platform, filter));
+    return debug(api.getModuleDebugName(filename, submoduleName));
   },
   getModuleDebugName: function ( filename, submoduleName ) {
     var name = cache[filename];
@@ -28,3 +28,4 @@ var api = module.exports = {
     }
   }
 };
+

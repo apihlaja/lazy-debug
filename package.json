@@ -1,10 +1,11 @@
 {
   "name": "lazy-debug",
   "version": "0.0.2",
-  "description": "Generates app & module names for vision media's debug",
+  "description": "Generates module names for vision media's debug",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "print-test": "node scripts/print-test.js"
   },
   "repository": {
     "type": "git",
