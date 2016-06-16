@@ -1,5 +1,7 @@
 # lazy-debug
 
+[![npm lazy-debug](https://nodei.co/npm/lazy-debug.png?compact=true)](https://www.npmjs.com/package/lazy-debug)
+
 Node.js module which generates app & module names for [visionmedia´s debug](https://github.com/visionmedia/debug) using `__filename` and package.json.
 
 Basic usage example:
