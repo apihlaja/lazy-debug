@@ -39,10 +39,25 @@ describe('internal functions', function () {
       expect(result).to.deep.equal(['debug', 'script']);
     });
   });
-  describe('#findPackageName', function () {
-    var findPackageName = functions.findPackageName;
-    it('finds package name in '+process.platform, function () {
-      expect(findPackageName(__filename)).to.equal('lazy-debug');
+  describe('#findModuleRoot(filePath)', function () {
+    var findModuleRoot = functions.findModuleRoot;
+    it('finds module root in browserify', function () {
+      expect(findModuleRoot('/lib')).to.equal('lib');
+      expect(findModuleRoot('/node_modules/lib2')).to.equal('lib2');
+      expect(findModuleRoot('/node_modules/lib2/node_modules/lib3')).to.equal('lib3');
+    })
+  });
+  describe('#getPseudoName(filePath)', function () {
+    var getPseudoName = functions.getPseudoName;
+    
+    it('returns "app" for root', function () {
+      expect(getPseudoName('/')).to.equal('app');
+    });
+    it('returns module dir name if inside /node_modules/', function () {
+      expect(getPseudoName('/node_modules/my-lib/file.js')).to.equal('my-lib');
+    });
+    it('returns module dir name even if nested', function () {
+      expect(getPseudoName('/node_modules/my-lib/node_modules/lib2/file.js')).to.equal('lib2');
     });
   });
   describe('#getModuleDebugId', function () {

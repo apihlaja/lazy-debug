@@ -28,4 +28,3 @@ var api = module.exports = {
     }
   }
 };
-

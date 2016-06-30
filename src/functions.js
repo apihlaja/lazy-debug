@@ -62,12 +62,6 @@ var functions = module.exports = {
     }
     return false;
   },
-  findPackageName(filePath, platform) {
-    if (!platform) { platform = process.platform };
-    var packagePath = functions.locatePackageJson(filePath, platform);
-    if ( filePath !== false )
-      return require(packagePath).name;
-  },
   getModuleDebugId(filePath, platform, filter) {
     if (typeof platform == 'function') {
       filter = platform;
@@ -75,10 +69,25 @@ var functions = module.exports = {
     }
     if (!platform) { platform = process.platform };
     var packagePath = functions.locatePackageJson(filePath, platform);
-    var packageName = require(packagePath).name;
-    var relpath = path.relative(packagePath, filePath);
+    var packageName = (packagePath) ? 
+      require(packagePath).name : functions.getPseudoName(filePath);
+    var relpath = (packagePath) ? 
+      path.relative(packagePath, filePath) : functions.findModuleRoot(filePath);
     var submodules = functions.parseFilePath(relpath, filter);
     return packageName + ':' + submodules.join(':');
+  },
+  getPseudoName(filePath) {
+    var search = 'node_modules/';
+    var idx = filePath.lastIndexOf(search);
+    if ( idx === -1 ) return 'app';
+    var moduleRoot = functions.findModuleRoot(filePath);
+    return moduleRoot.substr(0, moduleRoot.indexOf('/'));
+  },
+  findModuleRoot(filePath) {
+    var search = 'node_modules/';
+    var idx = filePath.lastIndexOf(search);
+    if ( idx === -1 ) return filePath.substr(1);
+    return filePath.substr(idx+search.length);
   }
 }
 
