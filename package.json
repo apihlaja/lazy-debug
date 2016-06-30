@@ -1,6 +1,6 @@
 {
   "name": "lazy-debug",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Generates module names for vision media's debug",
   "main": "src/index.js",
   "scripts": {
@@ -27,7 +27,16 @@
     "mocha": "^2.5.3"
   },
   "browserify": {
-    "transform": [["babelify", { "presets": ["es2015"] }]]
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
   },
   "gitHead": "af1051caa0f3a201ec6cf28fe8919871233bd4b0",
   "bugs": {
