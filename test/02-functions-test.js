@@ -44,7 +44,9 @@ describe('internal functions', function () {
     it('finds module root in browserify', function () {
       expect(findModuleRoot('/lib')).to.equal('lib');
       expect(findModuleRoot('/node_modules/lib2')).to.equal('lib2');
+      expect(findModuleRoot('/node_modules\\lib2')).to.equal('lib2');
       expect(findModuleRoot('/node_modules/lib2/node_modules/lib3')).to.equal('lib3');
+      expect(findModuleRoot('/node_modules\\lib2\\node_modules\\lib3')).to.equal('lib3');
     })
   });
   describe('#getPseudoName(filePath)', function () {
@@ -55,6 +57,7 @@ describe('internal functions', function () {
     });
     it('returns module dir name if inside /node_modules/', function () {
       expect(getPseudoName('/node_modules/my-lib/file.js')).to.equal('my-lib');
+      expect(getPseudoName('/node_modules\\my-lib\\file.js')).to.equal('my-lib');
     });
     it('returns module dir name even if nested', function () {
       expect(getPseudoName('/node_modules/my-lib/node_modules/lib2/file.js')).to.equal('lib2');
@@ -71,6 +74,8 @@ describe('internal functions', function () {
         .to.equal('lazy-debug:test:dir1');
       expect(getModuleDebugId(require('./dir1')()))
         .to.equal('lazy-debug:test:dir1');
+      expect(getModuleDebugId('/web\\browser.jsx'))
+        .to.equal('app:web:browser')
     });
   });
 });

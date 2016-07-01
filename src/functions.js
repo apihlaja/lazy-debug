@@ -77,17 +77,20 @@ var functions = module.exports = {
     return packageName + ':' + submodules.join(':');
   },
   getPseudoName(filePath) {
-    var search = 'node_modules/';
+    var search = 'node_modules';
     var idx = filePath.lastIndexOf(search);
     if ( idx === -1 ) return 'app';
     var moduleRoot = functions.findModuleRoot(filePath);
-    return moduleRoot.substr(0, moduleRoot.indexOf('/'));
+    if ( filePath.lastIndexOf('node_modules/') !== -1 )
+      return moduleRoot.substr(0, moduleRoot.indexOf('/'));
+    else
+      return moduleRoot.substr(0, moduleRoot.indexOf('\\'));
   },
   findModuleRoot(filePath) {
-    var search = 'node_modules/';
+    var search = 'node_modules';
     var idx = filePath.lastIndexOf(search);
     if ( idx === -1 ) return filePath.substr(1);
-    return filePath.substr(idx+search.length);
+    return filePath.substr(idx+1+search.length);
   }
 }
 
