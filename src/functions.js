@@ -50,7 +50,7 @@ var functions = module.exports = {
     var testdir = filedir;
     var counter = 1;
     var result;
-    while (pathParts.length-1 !== counter ) {
+    while (pathParts.length > counter ) {
       try {
         var testfile = path.join(testdir, 'package.json');
         return require.resolve(testfile);
