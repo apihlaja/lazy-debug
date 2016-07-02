@@ -7,14 +7,19 @@ var functions = module.exports = {
       filter = platform;
       platform = false;
     }
-    if (!platform) { platform = process.platform };
+
+    if (!platform) platform = process.platform;
+    if (!platform) platform = 'browser';
+
     if (platform === 'win32') {
       delimiter = '\\';
     }
     if (platform === 'browser') {
       if ( file.indexOf('\\') !== -1 ) {
-        file = file.substr(1,file.length);
         delimiter = '\\';
+      }
+      if (file.indexOf('/') === 0) {
+        file = file.substr(1,file.length);
       }
     }
     // should be posix..
