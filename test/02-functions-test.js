@@ -22,7 +22,7 @@ describe('internal functions', function () {
       ]);
     });
     it('handles f*** up browserify paths', function () {
-      var sample = '\\path/dir/file.txt';
+      var sample = '/path\\dir\\file.txt';
       expect(parseFilePath(sample, 'browser')).to.deep.equal([
         'path', 'dir', 'file'
       ]);
@@ -31,7 +31,7 @@ describe('internal functions', function () {
       var sample = '/test/debug/script.js';
       var result = parseFilePath(sample, 'posix', function (pathArr) {
         if ( pathArr && pathArr.length > 0 ) {
-          if ( pathArr[0] === 'test' ) 
+          if ( pathArr[0] === 'test' )
             pathArr.shift();
         }
         return pathArr;
@@ -51,7 +51,7 @@ describe('internal functions', function () {
   });
   describe('#getPseudoName(filePath)', function () {
     var getPseudoName = functions.getPseudoName;
-    
+
     it('returns "app" for root', function () {
       expect(getPseudoName('/')).to.equal('app');
     });

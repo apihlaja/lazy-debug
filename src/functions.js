@@ -12,8 +12,9 @@ var functions = module.exports = {
       delimiter = '\\';
     }
     if (platform === 'browser') {
-      if ( file.indexOf('\\') === 0 ) {
+      if ( file.indexOf('\\') !== -1 ) {
         file = file.substr(1,file.length);
+        delimiter = '\\';
       }
     }
     // should be posix..
@@ -69,9 +70,9 @@ var functions = module.exports = {
     }
     if (!platform) { platform = process.platform };
     var packagePath = functions.locatePackageJson(filePath, platform);
-    var packageName = (packagePath) ? 
+    var packageName = (packagePath) ?
       require(packagePath).name : functions.getPseudoName(filePath);
-    var relpath = (packagePath) ? 
+    var relpath = (packagePath) ?
       path.relative(packagePath, filePath) : functions.findModuleRoot(filePath);
     var submodules = functions.parseFilePath(relpath, filter);
     return packageName + ':' + submodules.join(':');
