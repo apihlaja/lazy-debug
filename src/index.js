@@ -5,14 +5,14 @@ var filter;
 var cache = {};
 
 var api = module.exports = {
-  configure(opts) {
+  configure: function(opts) {
     if ( !opts ) opts = {};
     if ( opts.filter && typeof opts.filter === 'function' ) {
       filter = opts.filter;
       cache = {};
     }
   },
-  get( filename, submoduleName ) {
+  get: function( filename, submoduleName ) {
     return debug(api.getModuleDebugName(filename, submoduleName));
   },
   getModuleDebugName: function ( filename, submoduleName ) {

@@ -1,7 +1,7 @@
 var path = require('path');
 
 var functions = module.exports = {
-  parseFilePath (file, platform, filter) {
+  parseFilePath: function (file, platform, filter) {
     var delimiter = '/';
     if (typeof platform == 'function') {
       filter = platform;
@@ -49,7 +49,7 @@ var functions = module.exports = {
     }
     return modules;
   },
-  locatePackageJson(filePath, platform) {
+  locatePackageJson: function(filePath, platform) {
     if (!platform) { platform = process.platform };
     var pathParts = functions.parseFilePath(filePath, platform);
     var filedir = path.dirname(filePath);
@@ -68,7 +68,7 @@ var functions = module.exports = {
     }
     return false;
   },
-  getModuleDebugId(filePath, platform, filter) {
+  getModuleDebugId: function(filePath, platform, filter) {
     if (typeof platform == 'function') {
       filter = platform;
       platform = false;
@@ -82,7 +82,7 @@ var functions = module.exports = {
     var submodules = functions.parseFilePath(relpath, filter);
     return packageName + ':' + submodules.join(':');
   },
-  getPseudoName(filePath) {
+  getPseudoName: function(filePath) {
     var search = 'node_modules';
     var idx = filePath.lastIndexOf(search);
     if ( idx === -1 ) return 'app';
@@ -92,7 +92,7 @@ var functions = module.exports = {
     else
       return moduleRoot.substr(0, moduleRoot.indexOf('\\'));
   },
-  findModuleRoot(filePath) {
+  findModuleRoot: function(filePath) {
     var search = 'node_modules';
     var idx = filePath.lastIndexOf(search);
     if ( idx === -1 ) return filePath.substr(1);

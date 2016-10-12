@@ -74,7 +74,7 @@ describe('internal functions', function () {
         .to.equal('lazy-debug:test:dir1');
       expect(getModuleDebugId(require('./dir1')()))
         .to.equal('lazy-debug:test:dir1');
-      expect(getModuleDebugId('/web\\browser.jsx'))
+      expect(getModuleDebugId('/web/browser.jsx'))
         .to.equal('app:web:browser')
     });
   });
