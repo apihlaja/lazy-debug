@@ -68,19 +68,26 @@ var functions = module.exports = {
     }
     return false;
   },
-  getModuleDebugId: function(filePath, platform, filter) {
-    if (typeof platform == 'function') {
-      filter = platform;
-      platform = false;
+  getModuleDebugId: function(filePath, options) {
+    options = options || {};
+
+    if (typeof options.platform == 'function') {
+      options.filter = platform;
+      options.platform = false;
     }
-    if (!platform) { platform = process.platform };
-    var packagePath = functions.locatePackageJson(filePath, platform);
-    var packageName = (packagePath) ?
-      require(packagePath).name : functions.getPseudoName(filePath);
+
+    if (!options.platform) { options.platform = process.platform };
+    var packagePath = functions.locatePackageJson(filePath, options.platform);
     var relpath = (packagePath) ?
       path.relative(packagePath, filePath) : functions.findModuleRoot(filePath);
-    var submodules = functions.parseFilePath(relpath, filter);
-    return packageName + ':' + submodules.join(':');
+    var submodules = functions.parseFilePath(relpath, options.filter);
+
+    if (options.prependPackageName){
+      var packageName = (packagePath) ?
+        require(packagePath).name : functions.getPseudoName(filePath);
+      return packageName + ':' + submodules.join(':');
+    }
+    return submodules.join(':');
   },
   getPseudoName: function(filePath) {
     var search = 'node_modules';

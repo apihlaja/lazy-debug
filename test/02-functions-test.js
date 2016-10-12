@@ -67,14 +67,14 @@ describe('internal functions', function () {
     var getModuleDebugId = functions.getModuleDebugId;
     it('names modules based on __filename and package.json', function () {
       expect(getModuleDebugId(__filename))
-        .to.equal('lazy-debug:test:02-functions-test');
+        .to.equal('test:02-functions-test');
       expect(getModuleDebugId(require('./dir1/submodule1')()))
-        .to.equal('lazy-debug:test:dir1:submodule1');
+        .to.equal('test:dir1:submodule1');
       expect(getModuleDebugId(require('./dir1')()))
-        .to.equal('lazy-debug:test:dir1');
+        .to.equal('test:dir1');
       expect(getModuleDebugId(require('./dir1')()))
-        .to.equal('lazy-debug:test:dir1');
-      expect(getModuleDebugId('/web/browser.jsx'))
+        .to.equal('test:dir1');
+      expect(getModuleDebugId('/web/browser.jsx',{prependPackageName:true}))
         .to.equal('app:web:browser')
     });
   });

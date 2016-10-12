@@ -18,7 +18,7 @@ var api = module.exports = {
   getModuleDebugName: function ( filename, submoduleName ) {
     var name = cache[filename];
     if ( !name ) {
-      name = getModuleDebugId(filename, process.platform, filter);
+      name = getModuleDebugId(filename, {platform: process.platform, filter:filter});
       cache[filename] = name;
     }
     if ( submoduleName ) {
