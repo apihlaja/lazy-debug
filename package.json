@@ -1,5 +1,5 @@
 {
-  "name": "lazy-debug-legacy",
+  "name": "lazy-debug",
   "version": "0.0.1",
   "description": "Generates module names for vision media's debug",
   "main": "src/index.js",
@@ -15,9 +15,6 @@
     "debug"
   ],
   "author": {
-    "name": "Nicholas McCready"
-  },
-  "originalAuthor": {
     "name": "Antti Pihlaja"
   },
   "license": "MIT",
