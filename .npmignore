@@ -2,3 +2,5 @@ test/
 scripts/
 *.json
 *.md
+appveyor.yml
+.travis.yml
