@@ -72,8 +72,6 @@ describe('internal functions', function () {
         .to.equal('test:dir1:submodule1');
       expect(getModuleDebugId(require('./dir1')()))
         .to.equal('test:dir1');
-      expect(getModuleDebugId(require('./dir1')()))
-        .to.equal('test:dir1');
       expect(getModuleDebugId('/web/browser.jsx',{prependPackageName:true}))
         .to.equal('app:web:browser')
     });
