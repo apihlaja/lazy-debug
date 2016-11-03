@@ -1,30 +1,48 @@
 var debug = require('debug');
 var getModuleDebugId = require('./functions').getModuleDebugId;
-var filter;
+var getPackageName = require('./functions').getPackageName;
 
-var cache = {};
+var idCache = {};
+var pkgNameCache = {};
 
 var api = module.exports = {
-  configure: function(opts) {
-    if ( !opts ) opts = {};
-    if ( opts.filter && typeof opts.filter === 'function' ) {
-      filter = opts.filter;
-      cache = {};
+  get: function( filename, options ) {
+    return debug(api.getModuleDebugName(filename, options));
+  },
+  getModuleDebugName: function ( filename, options ) {
+    var name = idCache[filename];
+    
+    options = options || {};
+    
+    if ( typeof options === 'string'  ) {
+      options = {submoduleName: options}
     }
-  },
-  get: function( filename, submoduleName ) {
-    return debug(api.getModuleDebugName(filename, submoduleName));
-  },
-  getModuleDebugName: function ( filename, submoduleName ) {
-    var name = cache[filename];
+    
     if ( !name ) {
-      name = getModuleDebugId(filename, {platform: process.platform, filter:filter});
-      cache[filename] = name;
+      name = getModuleDebugId(filename, {platform: process.platform});
+      idCache[filename] = name;
     }
-    if ( submoduleName ) {
-      return name + ':' + submoduleName;
-    } else {
-      return name;
+    
+    if (options.submoduleName){
+      name += ':' + options.submoduleName;
     }
+    
+    if (options.packageName) {
+      var pkgName;
+      
+      if (typeof options.packageName === 'string') {
+        pkgName = options.packageName;
+      }
+      else {
+        pkgName = pkgNameCache[filename];
+        if (!pkgName) {
+          pkgName = getPackageName(filename);
+          pkgNameCache[filename] = pkgName;
+        }
+      }
+      name = pkgName + ':' + name;
+    }
+    
+    return name;
   }
 };

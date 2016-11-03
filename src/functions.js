@@ -1,12 +1,8 @@
 var path = require('path');
 
 var functions = module.exports = {
-  parseFilePath: function (file, platform, filter) {
+  parseFilePath: function (file, platform) {
     var delimiter = '/';
-    if (typeof platform == 'function') {
-      filter = platform;
-      platform = false;
-    }
 
     if (!platform) platform = process.platform;
     if (!platform) platform = 'browser';
@@ -44,9 +40,6 @@ var functions = module.exports = {
         modules.shift();
       }
     }
-    if ( filter && typeof filter === 'function' ) {
-      return filter(modules);
-    }
     return modules;
   },
   locatePackageJson: function(filePath, platform) {
@@ -70,24 +63,19 @@ var functions = module.exports = {
   },
   getModuleDebugId: function(filePath, options) {
     options = options || {};
-
-    if (typeof options.platform == 'function') {
-      options.filter = platform;
-      options.platform = false;
-    }
-
+    
     if (!options.platform) { options.platform = process.platform };
     var packagePath = functions.locatePackageJson(filePath, options.platform);
     var relpath = (packagePath) ?
       path.relative(packagePath, filePath) : functions.findModuleRoot(filePath);
-    var submodules = functions.parseFilePath(relpath, options.filter);
+    var submodules = functions.parseFilePath(relpath);
 
-    if (options.prependPackageName){
-      var packageName = (packagePath) ?
-        require(packagePath).name : functions.getPseudoName(filePath);
-      return packageName + ':' + submodules.join(':');
-    }
     return submodules.join(':');
+  },
+  getPackageName: function (filePath) {
+    var packagePath = functions.locatePackageJson(filePath);
+    return (packagePath) ?
+        require(packagePath).name : functions.getPseudoName(filePath);
   },
   getPseudoName: function(filePath) {
     var search = 'node_modules';

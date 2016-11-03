@@ -27,17 +27,6 @@ describe('internal functions', function () {
         'path', 'dir', 'file'
       ]);
     });
-    it('can take filter function as argument', function () {
-      var sample = '/test/debug/script.js';
-      var result = parseFilePath(sample, 'posix', function (pathArr) {
-        if ( pathArr && pathArr.length > 0 ) {
-          if ( pathArr[0] === 'test' )
-            pathArr.shift();
-        }
-        return pathArr;
-      });
-      expect(result).to.deep.equal(['debug', 'script']);
-    });
   });
   describe('#findModuleRoot(filePath)', function () {
     var findModuleRoot = functions.findModuleRoot;
@@ -65,15 +54,22 @@ describe('internal functions', function () {
   });
   describe('#getModuleDebugId', function () {
     var getModuleDebugId = functions.getModuleDebugId;
-    it('names modules based on __filename and package.json', function () {
+    it('names modules based on __filename', function () {
       expect(getModuleDebugId(__filename))
         .to.equal('test:02-functions-test');
       expect(getModuleDebugId(require('./dir1/submodule1')()))
         .to.equal('test:dir1:submodule1');
       expect(getModuleDebugId(require('./dir1')()))
         .to.equal('test:dir1');
-      expect(getModuleDebugId(require('./dir1')(),{prependPackageName:true}))
-        .to.equal('lazy-debug:test:dir1')
     });
   });
+  
+  describe('#getPackageName', function () {
+    var getPackageName = functions.getPackageName;
+    
+    it('finds package name based on __filename', function () {
+      expect(getPackageName(__filename))
+        .to.equal('lazy-debug');
+    });
+  })
 });

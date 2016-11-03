@@ -1,5 +1,12 @@
 process.env.DEBUG = '*';
+var lazyDebug = require('../src');
 
-var debug = require('../src').get(__filename);
+lazyDebug.get(__filename)('it works?');
 
-debug('it works?');
+lazyDebug.get(__filename, 'sub')('debugger for submodule');
+
+lazyDebug.get(__filename, {packageName: true})('includes package name');
+
+lazyDebug.get
+  (__filename, {packageName: 'fake', submoduleName: 'sub2'})
+  ('fake package name + submodule');
