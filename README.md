@@ -4,27 +4,34 @@
 
 Node.js module which generates app & module names for [visionmedia´s debug](https://github.com/visionmedia/debug) using `__filename` and package.json.
 
-Basic usage example:
+
+## Usage
 
 ```javascript
 var debug = require('lazy-debug').get(__filename);
 ```
 
-Depending on `__filename`, debug name will be something like packageName:dir:file. File extension is removed and if file name is `index`, its removed too. For futher customization, to fit better for project structure, you can provide filter function:
+Debugger name is path to project/module root, ie. something like `dir1:dir2:file`. File extensions are omited and file name is omitted if the name is `index`.
 
 ```javascript
-var lazyDebug = require('lazy-debug');
-lazyDebug.configure({filter: function (pathArray) {
-  if ( pathArray[0] === 'src' ) {
-    pathArray.shift();
-  }
-  return pathArray;
-}});
-
-// now, when called in packageRoot/src/module1/index.js
-var debug = require('lazy-debug').get(__filename);
-// debug name will be projectName:module1
+var debug = require('lazy-debug').get(__filename, {submoduleName: 'sub'});
+// shorthand:
+var debug = require('lazy-debug').get(__filename, 'sub');
 ```
+
+Adds submodule name, ie. debug name will be `dir1:dir2:file:sub`.
+
+```javascript
+var debug = require('lazy-debug').get(__filename, {packageName: true});
+```
+
+Includes package name from package.json (`pkgName:dir1:dir2:file`).
+
+```javascript
+var debug = require('lazy-debug').get(__filename, {packageName: 'custom'});
+```
+
+Includes custom root name (`custom:dir1:dir2:file`)
 
 
 ## Install
