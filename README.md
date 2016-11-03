@@ -1,5 +1,7 @@
 # lazy-debug
 
+[![Travis Build Status](https://travis-ci.org/apihlaja/lazy-debug.svg?branch=master)](https://travis-ci.org/apihlaja/lazy-debug) [![Appveyor Build status](https://ci.appveyor.com/api/projects/status/yihkfbm7e89h1ngf/branch/master?svg=true)](https://ci.appveyor.com/project/apihlaja/lazy-debug/branch/master)
+
 [![npm lazy-debug](https://nodei.co/npm/lazy-debug.png?compact=true)](https://www.npmjs.com/package/lazy-debug)
 
 Node.js module which generates app & module names for [visionmedia´s debug](https://github.com/visionmedia/debug) using `__filename` and package.json.
