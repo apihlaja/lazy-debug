@@ -1,3 +1,6 @@
+var expect = require('chai').expect;
+
+var isNodeJs = require('detect-node');
 
 describe('lazy-debug', function () {
   var lazyDebug = require('../src');
@@ -23,15 +26,27 @@ describe('lazy-debug', function () {
       .to.equal('test:01-lazy-debug-test:test2-2');
     });
     
-    it('adds package name if given', function () {
-
+    it('adds package name if requested in node.js', function () {
+      if (!isNodeJs) this.skip()
+      
       expect(
         lazyDebug.getModuleDebugName(__filename, {packageName: true})
       ).to.equal('lazy-debug:test:01-lazy-debug-test');
-      
+    });
+
+
+    it('uses "app" as package name if requested in browser', function () {
+        if (isNodeJs) this.skip()
+
+        expect(
+          lazyDebug.getModuleDebugName(__filename, {packageName: true})
+        ).to.equal('app:test:01-lazy-debug-test');
+    })
+
+    it('sets package name if given', function () {
       expect(
         lazyDebug.getModuleDebugName(__filename, {packageName: 'fake'})
       ).to.equal('fake:test:01-lazy-debug-test');
-    });
+    })
   });
 });

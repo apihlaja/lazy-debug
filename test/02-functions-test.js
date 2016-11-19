@@ -1,4 +1,7 @@
+var expect = require('chai').expect;
 var functions = require('../src/functions');
+
+var isNodeJs = require('detect-node');
 
 describe('internal functions', function () {
   describe('#parseFilePath', function () {
@@ -67,9 +70,18 @@ describe('internal functions', function () {
   describe('#getPackageName', function () {
     var getPackageName = functions.getPackageName;
     
-    it('finds package name based on __filename', function () {
+    it('finds package name based on __filename in node.js', function () {
+      if (!isNodeJs) this.skip();
+
       expect(getPackageName(__filename))
-        .to.equal('lazy-debug');
+          .to.equal('lazy-debug');
+    });
+
+    it('use "app" as package name in browser', function () {
+      if (isNodeJs) this.skip()
+
+      expect(getPackageName(__filename))
+        .to.equal('app');
     });
   })
 });
