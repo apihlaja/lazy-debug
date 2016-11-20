@@ -6,7 +6,7 @@ describe('lazy-debug', function () {
   var lazyDebug = require('../src');
   describe('#get(filename, submoduleName|options)', function () {
     it('returns named debug instance', function () {
-      lazyDebug.get(__filename)('it works, I hope');
+      lazyDebug.get(__filename)('this should be function');
     });
   });
   describe('#getModuleDebugName(filename, submoduleName|options)', function () {
@@ -26,7 +26,7 @@ describe('lazy-debug', function () {
       .to.equal('test:01-lazy-debug-test:test2-2');
     });
     
-    it('adds package name if requested in node.js', function () {
+    it('adds real package name in node.js', function () {
       if (!isNodeJs) this.skip()
       
       expect(
@@ -35,7 +35,7 @@ describe('lazy-debug', function () {
     });
 
 
-    it('uses "app" as package name if requested in browser', function () {
+    it('uses "app" as package name in browser', function () {
         if (isNodeJs) this.skip()
 
         expect(

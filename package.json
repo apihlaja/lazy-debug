@@ -4,9 +4,10 @@
   "description": "Generates module names for vision media's debug",
   "main": "src/index.js",
   "scripts": {
-    "test": "run-s test:nodejs test:browserify",
+    "test": "run-s test:nodejs test:browserify test:webpack",
     "test:nodejs": "mocha",
-    "test:browserify": "karma start ./karma.browserify.conf.js"
+    "test:browserify": "karma start ./test/karma.browserify.js",
+    "test:webpack": "karma start ./test/karma.webpack.js"
   },
   "repository": {
     "type": "git",
@@ -30,8 +31,11 @@
     "karma-browserify": "5.1.0",
     "karma-mocha": "1.3.0",
     "karma-phantomjs-launcher": "1.0.2",
+    "karma-spec-reporter": "0.0.26",
+    "karma-webpack": "1.8.0",
     "mocha": "^3.1.2",
     "npm-run-all": "3.1.1",
-    "watchify": "3.7.0"
+    "watchify": "3.7.0",
+    "webpack": "1.13.3"
   }
 }
