@@ -1,3 +1,5 @@
+var path = require('path')
+
 module.exports = function(config) {
   config.set({
 
@@ -27,13 +29,32 @@ module.exports = function(config) {
       node: {
         __filename: true,
         "fs": "empty"
+      },
+      module: {
+          preLoaders: [
+              // instrument only testing sources with Istanbul
+              {
+                  test: /\.js$/,
+                  include: path.resolve('src/'),
+                  loader: 'istanbul-instrumenter'
+              }
+          ]
       }
     },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec'],
+    reporters: ['spec', 'coverage'],
+
+    coverageReporter: {
+        dir: 'coverage/webpack',
+        reporters: [
+          {type: 'text'},
+          {type: 'lcov'},
+          {type: 'json'}
+        ]
+    },
 
     // web server port
     port: 9876,
