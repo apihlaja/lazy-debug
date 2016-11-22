@@ -4,6 +4,8 @@
 
 **lazy-debug** is a helper for [visionmedia´s debug](https://github.com/visionmedia/debug). It generates module identifiers based on `__filename`, so your debug identifiers reflect the file structure automatically.
 
+[![console log](https://raw.githubusercontent.com/apihlaja/lazy-debug/master/examples/express/output.png?raw=true)](https://github.com/apihlaja/lazy-debug/tree/master/examples/express)
+
 Supports
 
   * Node.js v0.10 and later

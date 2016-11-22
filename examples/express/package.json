@@ -1,0 +1,17 @@
+{
+  "name": "lazy-debug-example",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./server/index.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "2.2.0",
+    "express": "~4.14.0",
+    "hbs": "~4.0.1",
+    "lazy-debug": "github:apihlaja/lazy-debug#dev",
+    "serve-favicon": "~2.3.0"
+  }
+}
