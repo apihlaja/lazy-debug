@@ -4,12 +4,19 @@ var isNodeJs = require('detect-node');
 
 describe('lazy-debug', function () {
   var lazyDebug = require('../src');
+
+  it('is shortcut for #get', function () {
+    expect(lazyDebug).to.equal(lazyDebug.get);
+  });
+
   describe('#get(filename, submoduleName|options)', function () {
     it('returns named debug instance', function () {
       lazyDebug.get(__filename)('this should be function');
     });
   });
+
   describe('#getModuleDebugName(filename, submoduleName|options)', function () {
+    
     it('gives debug name for file', function () {
       var name = lazyDebug.getModuleDebugName(__filename);
       expect(name).to.equal('test:01-lazy-debug-test');
