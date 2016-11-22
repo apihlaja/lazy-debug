@@ -1,6 +1,6 @@
 {
   "name": "lazy-debug",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "lazy-debug is a helper for visionmedia´s debug. It generates module identifiers based on filename, so your debug identifiers reflect the file structure automatically.",
   "main": "src/index.js",
   "scripts": {
@@ -14,7 +14,9 @@
     "url": "https://github.com/apihlaja/lazy-debug.git"
   },
   "keywords": [
-    "debug", "webpack", "browserify"
+    "debug",
+    "webpack",
+    "browserify"
   ],
   "author": "Antti Pihlaja",
   "license": "MIT",
