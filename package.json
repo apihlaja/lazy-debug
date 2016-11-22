@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "npm run test:nodejs && npm run test:browserify && npm run test:webpack",
-    "test:nodejs": "mocha",
+    "test:nodejs": "istanbul cover ./node_modules/mocha/bin/_mocha --config=test/istanbul.node.json",
     "test:browserify": "karma start ./test/karma.browserify.js",
     "test:webpack": "karma start ./test/karma.webpack.js"
   },
@@ -27,6 +27,7 @@
   "devDependencies": {
     "browserify": "13.3.0",
     "chai": "^3.5.0",
+    "istanbul": "0.4.5",
     "karma": "1.4.0",
     "karma-browserify": "5.1.0",
     "karma-mocha": "1.3.0",

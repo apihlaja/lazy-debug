@@ -1,0 +1,6 @@
+{
+  "reporting": {
+    "dir": "./coverage/nodejs",
+    "reports": ["lcov", "json"]
+  }
+}
