@@ -11,6 +11,11 @@ environment:
 platform:
   - x64
 
+# master + PRs
+branches:
+  only:
+    - master
+
 install:
   - ps: Install-Product node $env:nodejs_version
   # tools versions
