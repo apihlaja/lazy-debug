@@ -21,7 +21,7 @@
   "author": "Antti Pihlaja",
   "license": "MIT",
   "peerDependencies": {
-    "debug": "*"
+    "debug": ">=2.6.3"
   },
   "dependencies": {
     "detect-node": "2.0.3"
