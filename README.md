@@ -69,7 +69,7 @@ Debugger identifier will be `my-lib:dir:file`. If package name is boolean `true`
 
 `npm test`
 
-Tests node.js compability by running vanilla [Mocha](https://mochajs.org/) at first, then Browserify and Webpack builds are tested in [PhantomJS](http://phantomjs.org/) using [Karma](http://karma-runner.github.io/).
+Tests node.js compatibility by running vanilla [Mocha](https://mochajs.org/) at first, then Browserify and Webpack builds are tested in [PhantomJS](http://phantomjs.org/) using [Karma](http://karma-runner.github.io/).
 
 
 ## License
