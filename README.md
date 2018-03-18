@@ -2,6 +2,8 @@
 
 [![Travis Build Status](https://travis-ci.org/apihlaja/lazy-debug.svg?branch=master)](https://travis-ci.org/apihlaja/lazy-debug) [![Appveyor Build status](https://ci.appveyor.com/api/projects/status/yihkfbm7e89h1ngf/branch/master?svg=true)](https://ci.appveyor.com/project/apihlaja/lazy-debug/branch/master)
 
+**__UNMAINTAINED__**: this was developed for webpack v1, not tested since then (v4 is out now).
+
 **lazy-debug** is a helper for [visionmedia´s debug](https://github.com/visionmedia/debug). It generates module identifiers based on `__filename`, so your debug identifiers reflect the file structure automatically.
 
 [![console log](https://raw.githubusercontent.com/apihlaja/lazy-debug/master/examples/express/output.png?raw=true)](https://github.com/apihlaja/lazy-debug/tree/master/examples/express)
