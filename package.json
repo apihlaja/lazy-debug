@@ -24,7 +24,7 @@
     "debug": "*"
   },
   "dependencies": {
-    "detect-node": "2.0.3"
+    "detect-node": "2.0.4"
   },
   "devDependencies": {
     "browserify": "^13.3.0",
